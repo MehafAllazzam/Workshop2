@@ -1,17 +1,129 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
+
+
 <head>
-<meta charset="UTF-8">
-<title>Your front-end</title>
+    <meta charset="UTF-8">
+    
+    <!--TODO: Change Title-->
+    <title>  Classsifier  </title>
+    
+    <style>
+        table, th, td {
+        border:1px solid rgb(99, 99, 141)  
+	 }
+
+    </style>
+
+	<style>
+		body {background-color:#e4e4e4;}
+		</style>
+
+		<style>
+ div0 {position: absolute;
+width: 1029px;
+height: 43px;
+left: 135px;
+top: 10px;
+font-family: Sevillana;
+font-style: normal;
+font-weight: normal;
+font-size: 96px;
+line-height: 130px;
+text-align: center;				
+color: white;}
+
+
+  div1 { position: absolute;
+	width: 349px;
+	height: 32px;
+	left: 546px;
+	top: 112px;
+right : 30px;
+font-family: Share Tech;
+font-style: normal;
+font-weight: normal;
+font-size: 20px;
+line-height: 41px;
+text-align: left;					
+color: #99868a}
+
+div2 {
+
+padding: 15px;
+text-align: left;
+position: absolute;
+width: 349px;
+height: 48px;
+left: 533px;
+top: 183px;
+right : 30px;
+color : #0f0e0f ;
+}
+
+</style>
+
 </head>
 
 <body>
-<form action="/fasttext">
-	Enter your text to be classified<br>
-	<input type="text" name="statement">
-	<input type="submit" value="Submit">
-</form> 
+
+
+    <!--TODO: Add system name--> 
+	<div0>
+		Classifier 
+	</div0> 
+
+    <!--TODO: Add system logo-->
+    
+    <div1>
+        Enter your text to be classified !<br>
+        <textarea type="text" id="statement"></textarea>
+        <input type="button" id="submit" value="Submit">
+        <input type="button" id="clear" value="Clear">
+    </div1>
+    
+    <hr>
+    
+    <div2>
+        <table>
+        </table>
+    </div2>
+    <div3>
+
+
+
+		<img src="https://pngimg.com/uploads/letter_c/letter_c_PNG45.png"
+        style = "position: absolute;
+		width: 161px;
+		height: 147px;
+		right: 1186px;
+		left : 10px;
+		top: 30px;" >
+ 
+     </div3>
+
+
+
+	
+    <script>
+        document.querySelector("#submit").addEventListener("click", async function () {
+            let textToBeClassified = document.querySelector("#statement").value;
+
+            let response = await fetch(`http://localhost:8000/fasttext?statement=${textToBeClassified}`);
+            let classifications = await response.json();
+            
+            let text = "";
+            classifications.forEach(c => text += c.label + ", ");
+            
+            document.querySelector("table").innerHTML = document.querySelector("table").innerHTML + `<tr><td>${textToBeClassified}</td><td>${text}</td></tr>`;
+
+        });
+
+        document.querySelector("#clear").addEventListener("click", function () {
+            document.querySelector("#statement").value = "";
+        });
+    </script>
 
 </body>
 
-</html> 
+</html>
