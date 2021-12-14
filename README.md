@@ -49,6 +49,12 @@ and label the text with the correct labels
 
 the results after being processed will be 
 returned to the user’s page
+## Testing
+
+we use Travis CI is a hosted, distributed continuous integration service
+
+used to build and test projects hosted at GitHub
+
 ## Authors
 
 its group work 
