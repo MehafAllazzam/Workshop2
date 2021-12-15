@@ -52,8 +52,10 @@ returned to the user’s page
 ## Testing
 
 we use Travis CI is a hosted, distributed continuous integration service
-
 used to build and test projects hosted at GitHub
+issue we faced in the build prosse , it was alwayas show filed prosse
+until we change the script in package.json to  " No test specified "
+because we dont have specified test casess .
 
 ## Authors
 
